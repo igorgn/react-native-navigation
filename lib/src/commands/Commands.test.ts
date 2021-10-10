@@ -242,6 +242,16 @@ describe('Commands', () => {
         )
       );
     });
+
+    it('update props with callback', () => {
+      const callback = jest.fn();
+      uut.updateProps('theComponentId', { someProp: 'someValue' }, callback);
+
+      const args = capture(mockedStore.updateProps).last();
+      expect(args[0]).toEqual('theComponentId');
+      expect(args[1]).toEqual({ someProp: 'someValue' });
+      expect(args[2]).toEqual(callback);
+    });
   });
 
   describe('showModal', () => {

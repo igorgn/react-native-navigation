@@ -121,6 +121,27 @@ describe('ComponentWrapper', () => {
     });
   });
 
+  it('update props with callback', (done) => {
+    const NavigationComponent = uut.wrap(
+      componentName,
+      () => MyComponent,
+      store,
+      componentEventsObserver
+    );
+    renderer.create(<NavigationComponent componentId={'component123'} />);
+
+    function callback() {
+      try {
+        expect(true).toBe(true);
+        done();
+      } catch (error) {
+        done(error);
+      }
+    }
+
+    store.updateProps('component123', { someProp: 'someValue' }, callback);
+  });
+
   it('updates props from store into inner component', () => {
     const NavigationComponent = uut.wrap(
       componentName,
