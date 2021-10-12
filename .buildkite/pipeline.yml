@@ -1,11 +1,10 @@
 env:
   CI: true
-  ANDROID_HOME: /usr/local/share/android-sdk/
-  PATH: "$PATH:/usr/local/share/android-sdk/platform-tools/"
+#   ANDROID_HOME: /usr/local/share/android-sdk/
+#   PATH: "$PATH:/usr/local/share/android-sdk/platform-tools/"
 steps:
   - label: "Android :android:"
     command:
-    - "source ~/.bash_profile"
     - "nvm install"
     - "npm install"
     - "npm run clean"
@@ -15,7 +14,6 @@ steps:
          
   - label: "IOS :ios:"
     command:
-    - "source ~/.bash_profile"
     - "nvm install"
     - "npm install"
     - "npm run clean"
