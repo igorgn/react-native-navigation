@@ -1,7 +1,7 @@
 env:
   CI: true
 #   ANDROID_HOME: /usr/local/share/android-sdk/
-#   PATH: "$PATH:/usr/local/share/android-sdk/platform-tools/"sdfdf
+#   PATH: "$PATH:/usr/local/share/android-sdk/platform-tools/"sdfd
 steps:
   - label: "Android :android:"
     command:
