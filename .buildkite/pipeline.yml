@@ -9,6 +9,7 @@ steps:
     - "nvm install"
     - "npm install"
     - "npm run clean"
+    - "npm run test-js"
     - "npm run test-unit-android -- --release"
     - "npm run test-e2e-android-multi -- --release --headless --verbose --ci"
          
@@ -18,4 +19,6 @@ steps:
     - "nvm install"
     - "npm install"
     - "npm run clean"
+    - "npm run test-unit-ios -- --release"
+    - "npm run test-snapshot-ios -- --release"
     - "npm run test-e2e-ios -- --release --multi --ci"
