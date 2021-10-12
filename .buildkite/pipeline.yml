@@ -27,4 +27,4 @@ steps:
     - "npm run test-unit-ios -- --release"
     - "npm run test-snapshot-ios -- --release"
     - "npm run test-e2e-ios -- --release --multi --ci"
-    if: build.pull_request.base_branch =~ /master/
+    if: build.pull_request.base_branch != null
