@@ -8,17 +8,23 @@ steps:
     - "env"
     - "nvm install"
     - "npm install"
-    - "npm run clean"
     - "npm run test-js"
     - "npm run test-unit-android -- --release"
     - "npm run test-e2e-android-multi -- --release --headless --verbose --ci"
-         
+
   - label: "IOS :ios:"
     command:
     - "env"
     - "nvm install"
     - "npm install"
-    - "npm run clean"
+    - "npm run test-e2e-ios -- --release --multi --ci"
+    if: "!build.pull_request.id"
+
+  - label: "IOS PR :ios: :git:
+    command:
+    - "nvm install"
+    - "npm install"
     - "npm run test-unit-ios -- --release"
     - "npm run test-snapshot-ios -- --release"
     - "npm run test-e2e-ios -- --release --multi --ci"
+    if: "build.pull_request.id"
