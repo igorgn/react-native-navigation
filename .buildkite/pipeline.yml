@@ -5,7 +5,7 @@ env:
 steps:
   - label: "Android :android:"
     command:
-    - "env"
+    - "nvm install"
     - "npm install"
     - "npm run clean"
     - "npm run test-unit-android -- --release"
@@ -13,7 +13,7 @@ steps:
          
   - label: "IOS :ios:"
     command:
-    - "env"
+    - "nvm install"
     - "npm install"
     - "npm run clean"
     - "npm run test-e2e-ios -- --release --multi --ci"
