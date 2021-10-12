@@ -18,13 +18,13 @@ steps:
     - "nvm install"
     - "npm install"
     - "npm run test-e2e-ios -- --release --multi --ci"
-    if: "!build.pull_request.id"
+    if: build.pull_request.base_branch == ""
 
-  - label: "IOS PR :ios: :git:
+  - label: "IOS PR :ios::git:"
     command:
     - "nvm install"
     - "npm install"
     - "npm run test-unit-ios -- --release"
     - "npm run test-snapshot-ios -- --release"
     - "npm run test-e2e-ios -- --release --multi --ci"
-    if: "build.pull_request.id"
+    if: build.pull_request.base_branch != ""
