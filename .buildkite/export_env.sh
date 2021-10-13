@@ -1,3 +1,5 @@
+export BRANCH=$BUILDKITE_BRANCH
+echo $BRANCH
 export VERSION=$(buildkite-agent meta-data get version)
 echo $VERSION
 export NPM_TAG=$(buildkite-agent meta-data get npm-tag)
