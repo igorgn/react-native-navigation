@@ -30,14 +30,14 @@ function run() {
 }
 
 function validateEnv() {
-  if (!process.env.JENKINS_CI) {
+  if (!process.env.CI) {
     throw new Error(`releasing is only available from CI`);
   }
 
-  if (!process.env.JENKINS_MASTER) {
-    console.log(`not publishing on a different build`);
-    return false;
-  }
+//   if (!process.env.JENKINS_MASTER) {
+//     console.log(`not publishing on a different build`);
+//     return false;
+//   }
 
   return true;
 }
@@ -109,12 +109,12 @@ function tagAndPublish(newVersion) {
   console.log(`trying to publish ${newVersion}...`);
   if (BUILD_DOCUMENTATION_VERSION && BUILD_DOCUMENTATION_VERSION !== '')
     documentation.release(BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION);
-  exec.execSync(`npm --no-git-tag-version version ${newVersion}`);
-  exec.execSync(`npm publish --tag ${VERSION_TAG}`);
+//   exec.execSync(`npm --no-git-tag-version version ${newVersion}`);
+//   exec.execSync(`npm publish --tag ${VERSION_TAG}`);
   if (isRelease) {
-    exec.execSync(`git tag -a ${newVersion} -m "${newVersion}"`);
-    exec.execSyncSilent(`git push deploy ${newVersion} || true`);
-    updatePackageJsonGit(newVersion);
+//     exec.execSync(`git tag -a ${newVersion} -m "${newVersion}"`);
+//     exec.execSyncSilent(`git push deploy ${newVersion} || true`);
+//     updatePackageJsonGit(newVersion);
   }
 }
 
@@ -133,11 +133,11 @@ function updatePackageJsonGit(version) {
   writePackageJson(packageJson);
   exec.execSync(`git add package.json`);
   exec.execSync(`git commit -m"Update package.json version to ${version} [ci skip]"`);
-  exec.execSync(`git push deploy ${BRANCH}`);
-  draftGitRelease(version);
+//   exec.execSync(`git push deploy ${BRANCH}`);
+//   draftGitRelease(version);
 }
 
-function draftGitRelease(version) {
+function (version) {
   exec.execSync(`npx gren release --tags=${version}`);
   exec.execSync(`sleep 1m`);
   // For some unknown reason, gren release works well only when calling it twice.
