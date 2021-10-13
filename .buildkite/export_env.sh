@@ -8,3 +8,4 @@ export BUILD_DOCUMENTATION_VERSION=$(buildkite-agent meta-data get build-documen
 echo $BUILD_DOCUMENTATION_VERSION
 export REMOVE_DOCUMENTATION_VERSION=$(buildkite-agent meta-data get remove-documentation-version)
 echo $REMOVE_DOCUMENTATION_VERSION
+echo 123
