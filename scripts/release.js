@@ -137,7 +137,7 @@ function updatePackageJsonGit(version) {
 //   draftGitRelease(version);
 }
 
-function (version) {
+function draftGitRelease(version) {
   exec.execSync(`npx gren release --tags=${version}`);
   exec.execSync(`sleep 1m`);
   // For some unknown reason, gren release works well only when calling it twice.
