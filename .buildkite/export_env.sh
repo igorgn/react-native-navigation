@@ -1,4 +1,3 @@
-export BUILD_ID=$BUILDKITE_BUILD_NUMBER
 export BRANCH=$BUILDKITE_BRANCH
 echo "BRANCH = $BRANCH"
 export RELEASE_BUILD=$(buildkite-agent meta-data get release-build || '')
