@@ -72,8 +72,8 @@ function versionTagAndPublish() {
   const version = isRelease
     ? process.env.VERSION
     : semver.gt(packageVersion, currentPublished)
-    ? `${packageVersion}-snapshot.${process.env.BUILDKITE_BUILD_NUMBER}`
-    : `${currentPublished}-snapshot.${process.env.BUILDKITE_BUILD_NUMBER}`;
+    ? `${packageVersion}-snapshot.${process.env.BUILD_ID}`
+    : `${currentPublished}-snapshot.${process.env.BUILD_ID}`;
 
   console.log(`Publishing version: ${version}`);
 
