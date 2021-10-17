@@ -9,11 +9,13 @@ const packageJsonPath = `${process.cwd()}/package.json`;
 
 // Workaround JS
 const isRelease = process.env.RELEASE_BUILD === 'true';
-
+console.log(isRelease);
 const BUILD_DOCUMENTATION_VERSION = process.env.BUILD_DOCUMENTATION_VERSION;
+console.log(BUILD_DOCUMENTATION_VERSION);
 const REMOVE_DOCUMENTATION_VERSION = process.env.REMOVE_DOCUMENTATION_VERSION;
+console.log(REMOVE_DOCUMENTATION_VERSION);
 
-const BRANCH = process.env.BRANCH;
+const BRANCH = process.env.BUILDKITE_BRANCH;
 let VERSION_TAG = process.env.NPM_TAG;
 console.log("pre " + VERSION_TAG);
 if (!VERSION_TAG) {
