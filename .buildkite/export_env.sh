@@ -4,7 +4,7 @@ export BRANCH=$BUILDKITE_BRANCH
 BK_MSG=$(echo "$BUILDKITE_MESSAGE" | tr '[:upper:]' '[:lower:]')
 echo $BK_MSG
 
-if [[ $BK_MSG =~ release ]];then
+if [[ $BK_MSG =~ ^release$ ]];then
   echo "BRANCH = $BRANCH"
   export RELEASE_BUILD=$(buildkite-agent meta-data get release-build)
   echo "RELEASE_BUILD = $RELEASE_BUILD"
