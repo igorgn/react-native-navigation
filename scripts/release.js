@@ -28,9 +28,9 @@ console.log(REMOVE_DOCUMENTATION_VERSION);
 const BRANCH = process.env.BUILDKITE_BRANCH;
 console.log(BRANCH);
 // let VERSION_TAG = process.env.NPM_TAG;
-console.log("pre " + VERSION_TAG);
 // if (!VERSION_TAG) {
 const VERSION_TAG = isRelease === 'true' ? 'latest' : 'snapshot';
+console.log("pre " + VERSION_TAG);
 // }
 const VERSION_INC = 'patch';
 console.log("post " + VERSION_TAG);
