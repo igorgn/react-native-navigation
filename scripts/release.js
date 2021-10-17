@@ -10,7 +10,7 @@ const packageJsonPath = `${process.cwd()}/package.json`;
 // Export buildkite variables for Release build
 let isRelease, VERSION, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
-  isRelease = exec.execSync(`buildkite-agent meta-data get release-build`);
+  isRelease = exec.execSync(`echo $(buildkite-agent meta-data get release-build)`);
   VERSION = exec.execSync(`buildkite-agent meta-data get version`);
   // VERSION_TAG = exec.execSync(`buildkite-agent meta-data get npm-tag`);
   BUILD_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get build-documentation-version`);
@@ -19,11 +19,11 @@ if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
 
 // Workaround JS
 // const isRelease = process.env.RELEASE_BUILD === 'true';
-console.log(isRelease);
+console.log("Release_build is " + isRelease);
 // const BUILD_DOCUMENTATION_VERSION = process.env.BUILD_DOCUMENTATION_VERSION;
-console.log(BUILD_DOCUMENTATION_VERSION);
+console.log("BUILD_DOCUMENTATION_VERSION is " + BUILD_DOCUMENTATION_VERSION);
 // const REMOVE_DOCUMENTATION_VERSION = process.env.REMOVE_DOCUMENTATION_VERSION;
-console.log(REMOVE_DOCUMENTATION_VERSION);
+console.log("REMOVE_DOCUMENTATION_VERSION is " + REMOVE_DOCUMENTATION_VERSION);
 
 const BRANCH = process.env.BUILDKITE_BRANCH;
 console.log(BRANCH);
