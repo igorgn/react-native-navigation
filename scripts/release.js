@@ -8,10 +8,11 @@ const documentation = require('./documentation');
 const packageJsonPath = `${process.cwd()}/package.json`;
 
 // Export buildkite variables for Release build
-let isRelease, VERSION_TAG, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
+let isRelease, VERSION, VERSION_TAG, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
   try {
     isRelease = exec.execSync(`buildkite-agent meta-data get release-build`);
+    VERSION = exec.execSync(`buildkite-agent meta-data get version`);
     VERSION_TAG = exec.execSync(`buildkite-agent meta-data get npm-tag`);
     BUILD_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get build-documentation-version`);
     REMOVE_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get remove-documentation-version`);
