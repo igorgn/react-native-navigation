@@ -8,7 +8,7 @@ const documentation = require('./documentation');
 const packageJsonPath = `${process.cwd()}/package.json`;
 
 // Export buildkite variables for Release build
-let isRelease, VERSION, VERSION_TAG, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
+let isRelease, VERSION, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
   isRelease = exec.execSync(`buildkite-agent meta-data get release-build`);
   VERSION = exec.execSync(`buildkite-agent meta-data get version`);
@@ -29,9 +29,9 @@ const BRANCH = process.env.BUILDKITE_BRANCH;
 console.log(BRANCH);
 // let VERSION_TAG = process.env.NPM_TAG;
 console.log("pre " + VERSION_TAG);
-if (!VERSION_TAG) {
-  VERSION_TAG = isRelease ? 'latest' : 'snapshot';
-}
+// if (!VERSION_TAG) {
+const VERSION_TAG = isRelease === 'true' ? 'latest' : 'snapshot';
+// }
 const VERSION_INC = 'patch';
 console.log("post " + VERSION_TAG);
 function run() {
