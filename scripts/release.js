@@ -2,6 +2,7 @@
 const exec = require('shell-utils').exec;
 const semver = require('semver');
 const fs = require('fs');
+const cp = require('child_process');
 const includes = require('lodash/includes');
 const documentation = require('./documentation');
 
@@ -10,11 +11,11 @@ const packageJsonPath = `${process.cwd()}/package.json`;
 // Export buildkite variables for Release build
 let isRelease, VERSION, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
-  isRelease = exec.execSync(`echo $(buildkite-agent meta-data get release-build)`);
-  VERSION = exec.execSync(`buildkite-agent meta-data get version`);
+  isRelease = cp.execSync(`echo $(buildkite-agent meta-data get release-build)`);
+  VERSION = cp.execSync(`buildkite-agent meta-data get version`);
   // VERSION_TAG = exec.execSync(`buildkite-agent meta-data get npm-tag`);
-  BUILD_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get build-documentation-version`);
-  REMOVE_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get remove-documentation-version`);
+  BUILD_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get build-documentation-version`);
+  REMOVE_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get remove-documentation-version`);
 }
 
 // Workaround JS
