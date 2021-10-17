@@ -7,16 +7,30 @@ const documentation = require('./documentation');
 
 const packageJsonPath = `${process.cwd()}/package.json`;
 
+// Export buildkite variables for Release build
+let isRelease, VERSION_TAG, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
+if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
+  try {
+    isRelease = exec.execSync(`buildkite-agent meta-data get release-build`);
+    VERSION_TAG = exec.execSync(`buildkite-agent meta-data get npm-tag`);
+    BUILD_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get build-documentation-version`);
+    REMOVE_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get remove-documentation-version`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // Workaround JS
-const isRelease = process.env.RELEASE_BUILD === 'true';
+// const isRelease = process.env.RELEASE_BUILD === 'true';
 console.log(isRelease);
-const BUILD_DOCUMENTATION_VERSION = process.env.BUILD_DOCUMENTATION_VERSION;
+// const BUILD_DOCUMENTATION_VERSION = process.env.BUILD_DOCUMENTATION_VERSION;
 console.log(BUILD_DOCUMENTATION_VERSION);
-const REMOVE_DOCUMENTATION_VERSION = process.env.REMOVE_DOCUMENTATION_VERSION;
+// const REMOVE_DOCUMENTATION_VERSION = process.env.REMOVE_DOCUMENTATION_VERSION;
 console.log(REMOVE_DOCUMENTATION_VERSION);
 
 const BRANCH = process.env.BUILDKITE_BRANCH;
-let VERSION_TAG = process.env.NPM_TAG;
+console.log(BRANCH);
+// let VERSION_TAG = process.env.NPM_TAG;
 console.log("pre " + VERSION_TAG);
 if (!VERSION_TAG) {
   VERSION_TAG = isRelease ? 'latest' : 'snapshot';
@@ -37,10 +51,10 @@ function validateEnv() {
     throw new Error(`releasing is only available from CI`);
   }
 
-//   if (!process.env.JENKINS_MASTER) {
-//     console.log(`not publishing on a different build`);
-//     return false;
-//   }
+  //   if (!process.env.JENKINS_MASTER) {
+  //     console.log(`not publishing on a different build`);
+  //     return false;
+  //   }
 
   return true;
 }
@@ -75,8 +89,8 @@ function versionTagAndPublish() {
   const version = isRelease
     ? process.env.VERSION
     : semver.gt(packageVersion, currentPublished)
-    ? `${packageVersion}-snapshot.${process.env.BUILDKITE_BUILD_NUMBER}`
-    : `${currentPublished}-snapshot.${process.env.BUILDKITE_BUILD_NUMBER}`;
+      ? `${packageVersion}-snapshot.${process.env.BUILDKITE_BUILD_NUMBER}`
+      : `${currentPublished}-snapshot.${process.env.BUILDKITE_BUILD_NUMBER}`;
 
   console.log(`Publishing version: ${version}`);
 
@@ -112,12 +126,12 @@ function tagAndPublish(newVersion) {
   console.log(`trying to publish ${newVersion}...`);
   if (BUILD_DOCUMENTATION_VERSION && BUILD_DOCUMENTATION_VERSION !== '')
     documentation.release(BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION);
-//   exec.execSync(`npm --no-git-tag-version version ${newVersion}`);
-//   exec.execSync(`npm publish --tag ${VERSION_TAG}`);
+  //   exec.execSync(`npm --no-git-tag-version version ${newVersion}`);
+  //   exec.execSync(`npm publish --tag ${VERSION_TAG}`);
   if (isRelease) {
-//     exec.execSync(`git tag -a ${newVersion} -m "${newVersion}"`);
-//     exec.execSyncSilent(`git push deploy ${newVersion} || true`);
-//     updatePackageJsonGit(newVersion);
+    //     exec.execSync(`git tag -a ${newVersion} -m "${newVersion}"`);
+    //     exec.execSyncSilent(`git push deploy ${newVersion} || true`);
+    //     updatePackageJsonGit(newVersion);
   }
 }
 
@@ -136,8 +150,8 @@ function updatePackageJsonGit(version) {
   writePackageJson(packageJson);
   exec.execSync(`git add package.json`);
   exec.execSync(`git commit -m"Update package.json version to ${version} [ci skip]"`);
-//   exec.execSync(`git push deploy ${BRANCH}`);
-//   draftGitRelease(version);
+  //   exec.execSync(`git push deploy ${BRANCH}`);
+  //   draftGitRelease(version);
 }
 
 function draftGitRelease(version) {
