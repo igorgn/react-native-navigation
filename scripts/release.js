@@ -15,11 +15,12 @@ const REMOVE_DOCUMENTATION_VERSION = process.env.REMOVE_DOCUMENTATION_VERSION;
 
 const BRANCH = process.env.BRANCH;
 let VERSION_TAG = process.env.NPM_TAG;
+console.log("pre " + VERSION_TAG);
 if (!VERSION_TAG) {
   VERSION_TAG = isRelease ? 'latest' : 'snapshot';
 }
 const VERSION_INC = 'patch';
-
+console.log("post " + VERSION_TAG);
 function run() {
   if (!validateEnv()) {
     return;
