@@ -14,7 +14,9 @@ if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
   isRelease = cp.execSync(`buildkite-agent meta-data get release-build`);
   isRelease = (isRelease.toString() === 'true');
   VERSION = cp.execSync(`buildkite-agent meta-data get version`);
-  // VERSION = (VERSION.toString() === 'null' ? '' : VERSION);
+  if (isRelease && VERSION === 0) {
+    throw new Error('Version can not be 0. Please specify the correct version...')
+  }
   BUILD_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get build-documentation-version`);
   REMOVE_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get remove-documentation-version`);
 }
