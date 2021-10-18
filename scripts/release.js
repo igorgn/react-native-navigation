@@ -30,7 +30,7 @@ const BRANCH = process.env.BUILDKITE_BRANCH;
 console.log(BRANCH);
 // let VERSION_TAG = process.env.NPM_TAG;
 // if (!VERSION_TAG) {
-const VERSION_TAG = isRelease === 'true' ? 'latest' : 'snapshot';
+const VERSION_TAG = isRelease ? 'latest' : 'snapshot';
 console.log("pre " + VERSION_TAG);
 // }
 const VERSION_INC = 'patch';
