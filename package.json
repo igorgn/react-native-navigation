@@ -1,6 +1,11 @@
 {
   "name": "react-native-navigation",
-  "version": "7.23.1",
+  "version": {
+    "type": "Buffer",
+    "data": [
+      48
+    ]
+  },
   "description": "React Native Navigation - truly native navigation for iOS and Android",
   "license": "MIT",
   "nativePackage": true,
