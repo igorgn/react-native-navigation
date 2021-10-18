@@ -16,7 +16,6 @@ if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
   VERSION = cp.execSync(`buildkite-agent meta-data get version`);
   // VERSION = (VERSION.toString() === 'null' ? '' : VERSION);
   BUILD_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get build-documentation-version`);
-  BUILD_DOCUMENTATION_VERSION = (BUILD_DOCUMENTATION_VERSION.toString() === 'null' ? '' : BUILD_DOCUMENTATION_VERSION);
   REMOVE_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get remove-documentation-version`);
 }
 
@@ -106,7 +105,7 @@ function tryPublishAndTag(version) {
 
 function tagAndPublish(newVersion) {
   console.log(`trying to publish ${newVersion}...`);
-  if (BUILD_DOCUMENTATION_VERSION && BUILD_DOCUMENTATION_VERSION !== '')
+  if (BUILD_DOCUMENTATION_VERSION && BUILD_DOCUMENTATION_VERSION !== 'null')
     documentation.release(BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION);
   //   exec.execSync(`npm --no-git-tag-version version ${newVersion}`);
   //   exec.execSync(`npm publish --tag ${VERSION_TAG}`);
