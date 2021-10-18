@@ -11,29 +11,22 @@ const packageJsonPath = `${process.cwd()}/package.json`;
 // Export buildkite variables for Release build
 let isRelease, VERSION, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
-  isRelease = cp.execSync(`buildkite-agent meta-data get release-build`);
+  isRelease = cp.execSync(`buildkite-agent meta-data get release-build`) === 'true';
   VERSION = cp.execSync(`buildkite-agent meta-data get version`);
-  // VERSION_TAG = exec.execSync(`buildkite-agent meta-data get npm-tag`);
   BUILD_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get build-documentation-version`);
   REMOVE_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get remove-documentation-version`);
 }
 
 // Workaround JS
-// const isRelease = process.env.RELEASE_BUILD === 'true';
 console.log("Release_build is " + isRelease);
 console.log("VERSION is " + VERSION);
-// const BUILD_DOCUMENTATION_VERSION = process.env.BUILD_DOCUMENTATION_VERSION;
 console.log("BUILD_DOCUMENTATION_VERSION is " + BUILD_DOCUMENTATION_VERSION);
-// const REMOVE_DOCUMENTATION_VERSION = process.env.REMOVE_DOCUMENTATION_VERSION;
 console.log("REMOVE_DOCUMENTATION_VERSION is " + REMOVE_DOCUMENTATION_VERSION);
 
 const BRANCH = process.env.BUILDKITE_BRANCH;
 console.log(BRANCH);
-// let VERSION_TAG = process.env.NPM_TAG;
-// if (!VERSION_TAG) {
 const VERSION_TAG = isRelease ? 'latest' : 'snapshot';
 console.log("pre " + VERSION_TAG);
-// }
 const VERSION_INC = 'patch';
 console.log("post " + VERSION_TAG);
 function run() {
@@ -49,12 +42,6 @@ function validateEnv() {
   if (!process.env.CI) {
     throw new Error(`releasing is only available from CI`);
   }
-
-  //   if (!process.env.JENKINS_MASTER) {
-  //     console.log(`not publishing on a different build`);
-  //     return false;
-  //   }
-
   return true;
 }
 
