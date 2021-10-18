@@ -20,7 +20,7 @@ if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
 // Workaround JS
 const t = typeof (isRelease);
 console.log(`Release_build is + ${isRelease}; Type is ${t}`);
-console.log(`String check: ${isRelease === 'true'}; 
+console.log(`String check: ${isRelease.toString() === 'true'}; 
              Boolean check: ${isRelease === true}; 
              Another check: ${isRelease ? "TRUE" : "FALSE"}`);
 console.log("VERSION is " + VERSION);
