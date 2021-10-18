@@ -21,6 +21,7 @@ if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
 // Workaround JS
 // const isRelease = process.env.RELEASE_BUILD === 'true';
 console.log("Release_build is " + isRelease);
+console.log("VERSION is " + VERSION);
 // const BUILD_DOCUMENTATION_VERSION = process.env.BUILD_DOCUMENTATION_VERSION;
 console.log("BUILD_DOCUMENTATION_VERSION is " + BUILD_DOCUMENTATION_VERSION);
 // const REMOVE_DOCUMENTATION_VERSION = process.env.REMOVE_DOCUMENTATION_VERSION;
@@ -85,7 +86,7 @@ function versionTagAndPublish() {
   console.log(`current published version: ${currentPublished}`);
 
   const version = isRelease
-    ? process.env.VERSION
+    ? VERSION
     : semver.gt(packageVersion, currentPublished)
       ? `${packageVersion}-snapshot.${process.env.BUILDKITE_BUILD_NUMBER}`
       : `${currentPublished}-snapshot.${process.env.BUILDKITE_BUILD_NUMBER}`;
