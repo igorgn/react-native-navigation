@@ -11,14 +11,18 @@ const packageJsonPath = `${process.cwd()}/package.json`;
 // Export buildkite variables for Release build
 let isRelease, VERSION, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
-  isRelease = cp.execSync(`buildkite-agent meta-data get release-build`) === 'true';
+  isRelease = cp.execSync(`buildkite-agent meta-data get release-build`);
   VERSION = cp.execSync(`buildkite-agent meta-data get version`);
   BUILD_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get build-documentation-version`);
   REMOVE_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get remove-documentation-version`);
 }
 
 // Workaround JS
-console.log("Release_build is " + isRelease);
+const t = typeof (isRelease);
+console.log(`Release_build is + ${isRelease}; Type is ${t}`);
+console.log(`String check: ${isRelease === 'true'}; 
+             Boolean check: ${isRelease === true}; 
+             Another check: ${isRelease ? "TRUE" : "FALSE"}`);
 console.log("VERSION is " + VERSION);
 console.log("BUILD_DOCUMENTATION_VERSION is " + BUILD_DOCUMENTATION_VERSION);
 console.log("REMOVE_DOCUMENTATION_VERSION is " + REMOVE_DOCUMENTATION_VERSION);
