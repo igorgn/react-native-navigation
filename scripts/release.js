@@ -19,19 +19,9 @@ if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
 }
 
 // Workaround JS
-const t = typeof (isRelease);
-console.log(`Release_build is ${isRelease}; Type is ${t}`);
-console.log(`String check: ${isRelease === 'true'}; 
-             Boolean check: ${isRelease === true}; 
-             Another check: ${isRelease ? "TRUE" : "FALSE"}`);
-console.log("VERSION is " + VERSION);
-console.log("BUILD_DOCUMENTATION_VERSION is " + BUILD_DOCUMENTATION_VERSION);
-console.log("REMOVE_DOCUMENTATION_VERSION is " + REMOVE_DOCUMENTATION_VERSION);
-
 const BRANCH = process.env.BUILDKITE_BRANCH;
 console.log(BRANCH);
 const VERSION_TAG = isRelease ? 'latest' : 'snapshot';
-console.log("VERSION_TAG " + VERSION_TAG);
 const VERSION_INC = 'patch';
 function run() {
   if (!validateEnv()) {
@@ -119,9 +109,9 @@ function tagAndPublish(newVersion) {
   //   exec.execSync(`npm --no-git-tag-version version ${newVersion}`);
   //   exec.execSync(`npm publish --tag ${VERSION_TAG}`);
   if (isRelease) {
-    //     exec.execSync(`git tag -a ${newVersion} -m "${newVersion}"`);
-    //     exec.execSyncSilent(`git push deploy ${newVersion} || true`);
-    //     updatePackageJsonGit(newVersion);
+    exec.execSync(`git tag -a ${newVersion} -m "${newVersion}"`);
+    exec.execSyncSilent(`git push deploy ${newVersion} || true`);
+    updatePackageJsonGit(newVersion);
   }
 }
 
@@ -140,8 +130,8 @@ function updatePackageJsonGit(version) {
   writePackageJson(packageJson);
   exec.execSync(`git add package.json`);
   exec.execSync(`git commit -m"Update package.json version to ${version} [ci skip]"`);
-  //   exec.execSync(`git push deploy ${BRANCH}`);
-  //   draftGitRelease(version);
+  exec.execSync(`git push deploy ${BRANCH}`);
+  draftGitRelease(version);
 }
 
 function draftGitRelease(version) {
