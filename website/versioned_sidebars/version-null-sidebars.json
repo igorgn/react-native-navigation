@@ -1,0 +1,350 @@
+{
+  "version-null/docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Getting Started",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/docs/before-you-start"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/installing"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/playground-app"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/showcases"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Using the app",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/docs/app-launch"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/basic-navigation"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/advanced-navigation"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/screen-lifecycle"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/passing-data-to-components"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/functionalComponents"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/customBackNavigation"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Layouts",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/docs/stack"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/bottomTabs"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/sideMenu"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/externalComponent"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Hierarchy",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/docs/root"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/modal"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/overlay"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Styling",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/docs/style-options"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/stack-buttons"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/style-theme"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/style-statusBar"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/style-orientation"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/style-animations"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/style-fonts"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/style-constants"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Third party integration",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/docs/community-libraries"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/third-party-typescript"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/third-party-mobx"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/docs/third-party-react-context"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Meta",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/docs/meta-contributing"
+        }
+      ]
+    }
+  ],
+  "version-null/api": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Navigation",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/api/component"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/root"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/stack"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/modal"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/overlay"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Layouts",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/api/layout-layout"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/layout-component"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/layout-stack"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/layout-bottomTabs"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/layout-sideMenu"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/layout-splitView"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Options",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/api/options-api"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-root"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-bottomTabs"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-bottomTab"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "Stack",
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-null/api/options-stack"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-title"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-subtitle"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-background"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-backButton"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-hardwareBackButton"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-button"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-iconInsets"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-iconBackground"
+            },
+            {
+              "type": "doc",
+              "id": "version-null/api/options-largeTitle"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-statusBar"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-layout"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-modal"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-navigationBar"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-overlay"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-sideMenu"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-sideMenuSide"
+        },
+        {
+          "type": "doc",
+          "id": "version-null/api/options-splitView"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Events",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-null/api/events"
+        }
+      ]
+    }
+  ]
+}
