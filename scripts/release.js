@@ -54,6 +54,7 @@ function setupGit() {
   // exec.execSync(`git checkout ${ONLY_ON_BRANCH}`);
 }
 
+
 function createNpmRc() {
   exec.execSync(`rm -f package-lock.json`);
   const content = `
