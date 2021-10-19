@@ -9,12 +9,13 @@ const documentation = require('./documentation');
 const packageJsonPath = `${process.cwd()}/package.json`;
 
 // Export buildkite variables for Release build
+// We cast toString() because function returns 'object'
 let isRelease, VERSION, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
-  isRelease = cp.execSync(`buildkite-agent meta-data get release-build`);
-  isRelease = (isRelease.toString() === 'true');
-  VERSION = Number(cp.execSync(`buildkite-agent meta-data get version`));
-  if (isRelease && VERSION === 0) {
+  isRelease = cp.execSync(`buildkite-agent meta-data get release-build`).toString();
+  isRelease = (isRelease === 'true');
+  VERSION = cp.execSync(`buildkite-agent meta-data get version`).toString();
+  if (isRelease && Number(VERSION) === 0) {
     throw new Error('Version can not be 0. Please specify the correct version...')
   }
   BUILD_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get build-documentation-version`).toString();
