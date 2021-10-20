@@ -36,6 +36,7 @@ function run() {
   versionTagAndPublish();
 }
 
+
 function validateEnv() {
   if (!process.env.CI) {
     throw new Error(`releasing is only available from CI`);
