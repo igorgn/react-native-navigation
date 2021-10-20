@@ -44,7 +44,6 @@ function validateEnv() {
 }
 
 
-
 function setupGit() {
   exec.execSyncSilent(`git config --global push.default simple`);
   exec.execSyncSilent(`git config --global user.email "${process.env.GIT_EMAIL}"`);
