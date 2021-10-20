@@ -10,7 +10,7 @@ const packageJsonPath = `${process.cwd()}/package.json`;
 
 // Export buildkite variables for Release build
 // We cast toString() because function returns 'object'
-let isRelease, VERSION, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
+let isRelease, VERSION, VERSION_TAG, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
   isRelease = cp.execSync(`buildkite-agent meta-data get release-build`).toString();
   isRelease = (isRelease === 'true');
@@ -26,11 +26,10 @@ if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
 // Workaround JS
 const BRANCH = process.env.BUILDKITE_BRANCH;
 
-let VERSION_TAG = process.env.NPM_TAG;
-if (VERSION_TAG != 'null') {
+if (VERSION_TAG == 'null') {
   VERSION_TAG = isRelease ? 'latest' : 'snapshot';
 }
-
+console.log(VERSION_TAG);
 const VERSION_INC = 'patch';
 function run() {
   if (!validateEnv()) {
