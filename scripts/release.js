@@ -18,14 +18,19 @@ if (process.env.BUILDKITE_MESSAGE.match(/^release$/i)) {
   if (isRelease && Number(VERSION) === 0) {
     throw new Error('Version can not be 0. Please specify the correct version...')
   }
+  VERSION_TAG = cp.execSync(`buildkite-agent meta-data get npm-tag`).toString();
   BUILD_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get build-documentation-version`).toString();
   REMOVE_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get remove-documentation-version`).toString();
 }
 
 // Workaround JS
 const BRANCH = process.env.BUILDKITE_BRANCH;
-console.log(BRANCH);
-const VERSION_TAG = isRelease ? 'latest' : 'snapshot';
+
+let VERSION_TAG = process.env.NPM_TAG;
+if (VERSION_TAG != 'null') {
+  VERSION_TAG = isRelease ? 'latest' : 'snapshot';
+}
+
 const VERSION_INC = 'patch';
 function run() {
   if (!validateEnv()) {
