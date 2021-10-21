@@ -42,6 +42,8 @@ function validateEnv() {
   return true;
 }
 
+
+
 function setupGit() {
   exec.execSyncSilent(`git config --global push.default simple`);
   exec.execSyncSilent(`git config --global user.email "${process.env.GIT_EMAIL}"`);
@@ -52,6 +54,7 @@ function setupGit() {
   );
   // exec.execSync(`git checkout ${ONLY_ON_BRANCH}`);
 }
+
 
 function createNpmRc() {
   exec.execSync(`rm -f package-lock.json`);
