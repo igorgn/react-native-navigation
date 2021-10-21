@@ -2,7 +2,7 @@
 const exec = require('shell-utils').exec;
 const semver = require('semver');
 const fs = require('fs');
-// const cp = require('child_process');
+const cp = require('child_process');
 const includes = require('lodash/includes');
 const documentation = require('./documentation');
 
@@ -14,10 +14,10 @@ const BRANCH = process.env.BUILDKITE_BRANCH;
 const isRelease = process.env.BUILDKITE_MESSAGE.match(/^release$/i);
 let VERSION, VERSION_TAG, BUILD_DOCUMENTATION_VERSION, REMOVE_DOCUMENTATION_VERSION;
 if (isRelease) {
-  VERSION = exec.execSync(`buildkite-agent meta-data get version`).toString();
-  VERSION_TAG = exec.execSync(`buildkite-agent meta-data get npm-tag`).toString();
-  BUILD_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get build-documentation-version`).toString();
-  REMOVE_DOCUMENTATION_VERSION = exec.execSync(`buildkite-agent meta-data get remove-documentation-version`).toString();
+  VERSION = cp.execSync(`buildkite-agent meta-data get version`).toString();
+  VERSION_TAG = cp.execSync(`buildkite-agent meta-data get npm-tag`).toString();
+  BUILD_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get build-documentation-version`).toString();
+  REMOVE_DOCUMENTATION_VERSION = cp.execSync(`buildkite-agent meta-data get remove-documentation-version`).toString();
 }
 
 console.log(typeof (VERSION));
