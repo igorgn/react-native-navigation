@@ -1,7 +1,7 @@
 steps:
   - block: ":rocket: Release!"
     prompt: "Fill out the details for release"
-    if: build.message =~ /^release$/i
+    if: "build.message =~ /^release$/i"
     fields:
       - text: "VERSION"
         key: "version"
@@ -38,7 +38,7 @@ steps:
 
   - label: ":package: Publish"
     env:
-    if: build.pull_request.id == null
+    if: "build.pull_request.id == null"
     command:
     - "nvm install"
     - "npm install"
