@@ -3,26 +3,21 @@ steps:
     prompt: "Fill out the details for release"
     if: build.message =~ /^release$/i
     fields:
-      - select: "RELEASE_BUILD"
-        key: "release-build"
-        hint: "Latest (true) or Snapshot (false)?"
-        default: "true"
-        options:
-          - label: "True"
-            value: true
-          - label: "False"
-            value: false
       - text: "VERSION"
         key: "version"
-      # - text: "NPM_TAG"
-      #   key: "npm-tag"
-      #   required: false
+      - text: "NPM_TAG"
+        key: "npm-tag"
+        default: 'null'
+        required: false
       - text: "BUILD_DOCUMENTATION_VERSION"
         key: "build-documentation-version"
+        default: 'null'
+        hint: 'Leave NULL if no version is specified'
       - text: "REMOVE_DOCUMENTATION_VERSION"
         key: "remove-documentation-version"
+        default: 'null'
+        hint: 'Leave NULL if no version is specified'
   
-  ## Android build is the same for master/branch/PRs/releases
   - label: ":android: Android"
     command:
     - "nvm install"
@@ -43,7 +38,7 @@ steps:
 
   - label: ":package: Publish"
     env:
-    if: "build.message =~ /^release$/i || build.branch == 'master'"
+    if: build.pull_request.id == null
     command:
     - "nvm install"
     - "npm install"
@@ -51,5 +46,3 @@ steps:
     depends_on:
     - "android_build"
     - "ios_build"
-    agents:
-      agent-118: "true"
