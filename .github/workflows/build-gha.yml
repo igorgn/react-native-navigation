@@ -6,16 +6,15 @@ on:
 
 jobs:
   build-the-build:
-  name: "Main"
-  runs-on: self-hosted
-  steps:
-  - name: Check out repository code
-    uses: actions/checkout@v3
-  
-  - run: |
-      nvm install
-      npm install
-      npm run test-unit-ios -- --release
+    runs-on: self-hosted
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v3
+    
+    - run: |
+        nvm install
+        npm install
+        npm run test-unit-ios -- --release
 
 # jobs:
 #     test-job:
