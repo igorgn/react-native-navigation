@@ -12,9 +12,8 @@ jobs:
       uses: actions/checkout@v3
     
     - run: |
-        nvm install
-        npm install
-        npm run test-unit-ios -- --release
+        ls ${{ github.workspace }}
+   
 
 # jobs:
 #     test-job:
