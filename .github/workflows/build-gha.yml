@@ -6,10 +6,10 @@ on:
 
 jobs:
   build-the-build:
-    runs-on: self-hosted
-    defaults:
-      run:
-        shell: /usr/local/sbin/cibuild
+    runs-on: macos-latest
+    # defaults:
+    #   run:
+    #     shell: /usr/local/sbin/cibuild
     steps:
     - name: Check out repository code
       uses: actions/checkout@v3
