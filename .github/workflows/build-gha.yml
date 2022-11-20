@@ -11,11 +11,15 @@ jobs:
     #   run:
     #     shell: /usr/local/sbin/cibuild
     steps:
-    - name: Check out repository code
-      uses: actions/checkout@v3
-    
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
     - run: |
-        ls ${{ github.workspace }}
+        cd ${{ github.workspace }}
+        npm install
+        npm run test-unit-ios -- --release
    
 
 # jobs:
