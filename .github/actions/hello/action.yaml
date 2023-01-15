@@ -26,7 +26,7 @@ runs:
       shell: bash
 
     - name: Check owners
-      run: cat $GITHUB_ACTOR
+      run: echo $GITHUB_ACTOR
       shell: bash
 
     - uses: mshick/add-pr-comment@v2
