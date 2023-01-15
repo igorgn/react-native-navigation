@@ -26,7 +26,7 @@ runs:
       shell: bash
 
     - name: Check owners
-      run: echo $GITHUB_ACTOR
+      run: echo ${{ github.sender }}
       shell: bash
 
     - uses: mshick/add-pr-comment@v2
@@ -46,7 +46,7 @@ runs:
     - name: Trigger Buildkite Pipeline
       uses: buildkite/trigger-pipeline-action@v1.2.0
       env:
-        BUILDKITE_API_ACCESS_TOKEN: ${{ secrets.BUILDKITE_TOKEN }}
+        BUILDKITE_API_ACCESS_TOKEN: ${{ inputs.who-to-greet }}
         BRANCH: ${GITHUB_REF}
         PIPELINE: "wix-mobile-oss/test-project"
       if: steps.comment.conclusion == 'skipped'
