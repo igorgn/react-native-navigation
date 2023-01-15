@@ -26,7 +26,7 @@ runs:
       shell: bash
 
     - name: Find who triggers
-      run: echo ${{ github.repository_owner }}
+      run: echo $GITHUB_EVENT_PATH
       shell: bash
 
     - uses: mshick/add-pr-comment@v2
