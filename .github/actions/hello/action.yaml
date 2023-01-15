@@ -25,6 +25,10 @@ runs:
         done
       shell: bash
 
+    - name: Check owners
+      run: cat $GITHUB_EVENT_PATH
+      shell: bash
+
     - uses: mshick/add-pr-comment@v2
       name: Leave a comment if restricted files are changed
       id: comment
