@@ -26,7 +26,7 @@ runs:
       shell: bash
 
     - name: Check owners
-      run: cat $GITHUB_EVENT_PATH
+      run: cat ${{ context.actor }}
       shell: bash
 
     - uses: mshick/add-pr-comment@v2
