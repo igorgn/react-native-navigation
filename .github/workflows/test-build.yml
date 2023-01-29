@@ -8,10 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # - id: foo
-      - uses: ./.github/actions/hello
-        with:
-          who-to-greet: ${{ secrets.BUILDKITE_TOKEN }}
+        # - id: foo
+        # - uses: ./.github/actions/hello
+      - name: test
+        run: echo 'busted'
+        shell:
+          bash
+          # who-to-greet: ${{ secrets.BUILDKITE_TOKEN }}
       # - run: echo random-number ${{ steps.foo.outputs.random-number }}
       #   shell: bash
 
